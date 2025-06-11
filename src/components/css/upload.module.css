@@ -1,6 +1,5 @@
-body {
+.container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   margin: 0;
   padding: 0;
   display: flex;
@@ -9,7 +8,7 @@ body {
   height: 100vh;
 }
 
-form {
+.form {
   background-color: #ffffff;
   padding: 30px 40px;
   border-radius: 16px;
@@ -19,13 +18,13 @@ form {
   animation: fadeIn 1s ease-in-out;
 }
 
-h1 {
+.heading {
   text-align: center;
   color: #333;
   margin-bottom: 24px;
 }
 
-label {
+.label {
   display: block;
   margin-bottom: 16px;
   color: #444;
@@ -33,10 +32,9 @@ label {
   transition: all 0.3s;
 }
 
-input[type="text"],
-input[type="number"],
-select,
-input[type="file"] {
+.input,
+.select,
+.file {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
@@ -46,34 +44,13 @@ input[type="file"] {
   transition: border-color 0.3s ease;
 }
 
-input:focus,
-select:focus {
+.input:focus,
+.select:focus {
   border-color: #007BFF;
   outline: none;
 }
 
-.color-option {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.color-option:hover {
-  transform: scale(1.03);
-}
-
-.color-sample {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #000;
-  margin-right: 8px;
-  border-radius: 4px;
-}
-
-button {
+.button {
   display: block;
   width: 100%;
   padding: 12px;
@@ -88,9 +65,15 @@ button {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
+.button:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
+}
+
+.status {
+  margin-top: 10px;
+  text-align: center;
+  color: #333;
 }
 
 @keyframes fadeIn {

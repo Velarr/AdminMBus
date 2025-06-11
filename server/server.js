@@ -31,7 +31,7 @@ app.post('/enviar', upload.single('geojson'), async (req, res) => {
     console.log('Recebendo dados:', req.body);
     console.log('Arquivo recebido:', req.file);
 
-    const { companhia, cor, rota, nrota } = req.body;
+    const { companhia, rota, nrota } = req.body;
 
     if (!req.file) return res.status(400).send('Arquivo obrigatório');
 
@@ -50,6 +50,22 @@ app.post('/enviar', upload.single('geojson'), async (req, res) => {
     } else {
       fs.unlinkSync(filePath);
       return res.status(400).send('Formato não suportado, envie .kml ou .geojson');
+    }
+
+    let cor;
+    switch (companhia.toLowerCase()) {
+      case 'rodoeste':
+        cor = '#FF0000';
+        break;
+      case 'sam':
+        cor = '#008000';
+        break;
+      case 'h.funchal':
+      case 'hfunchal':
+        cor = '#BA8E23'; 
+        break;
+      default:
+        cor = '#000000';
     }
 
     const data = {
@@ -72,7 +88,59 @@ app.post('/enviar', upload.single('geojson'), async (req, res) => {
   }
 });
 
+app.get('/rotas', async (req, res) => {
+  try {
+    const snapshot = await firestore.collection('rotas').orderBy('nrota').get();
+    const rotas = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    res.status(200).json(rotas);
+  } catch (error) {
+    console.error('Erro ao buscar rotas:', error);
+    res.status(500).send('Erro ao buscar rotas.');
+  }
+});
 
+app.get('/rotas/:id', async (req, res) => {
+  try {
+    const doc = await firestore.collection('rotas').doc(req.params.id).get();
+    if (!doc.exists) {
+      return res.status(404).send('Rota não encontrada');
+    }
+    res.status(200).json({ id: doc.id, ...doc.data() });
+  } catch (error) {
+    console.error('Erro ao buscar rota:', error);
+    res.status(500).send('Erro ao buscar rota.');
+  }
+});
+
+app.delete('/rotas/:id', async (req, res) => {
+  try {
+    await firestore.collection('rotas').doc(req.params.id).delete();
+    res.status(200).send('Rota eliminada');
+  } catch (error) {
+    console.error('Erro ao eliminar rota:', error);
+    res.status(500).send('Erro ao eliminar rota.');
+  }
+});
+
+app.put('/rotas/:id', async (req, res) => {
+  try {
+    const { companhia, rota, nrota, cor } = req.body;
+    await firestore.collection('rotas').doc(req.params.id).update({
+      companhia,
+      rota,
+      nrota: Number(nrota),
+      cor
+    });
+    const doc = await firestore.collection('rotas').doc(req.params.id).get();
+    res.status(200).json({ id: doc.id, ...doc.data() });
+  } catch (error) {
+    console.error('Erro ao atualizar rota:', error);
+    res.status(500).send('Erro ao atualizar rota.');
+  }
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
