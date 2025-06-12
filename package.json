@@ -12,6 +12,7 @@
     "@tmcw/togeojson": "^7.1.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "firebase": "^11.9.1",
     "multer": "^2.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

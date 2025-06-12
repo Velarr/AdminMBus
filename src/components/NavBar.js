@@ -7,6 +7,8 @@ export default function NavBar() {
     <nav className={styles.nav}>
       <Link to="/" className={styles.link}>Adicionar Rota</Link>
       <Link to="/rotas" className={styles.link}>Ver Rotas</Link>
+      <Link to="/registrar-condutor" className={styles.link}>Registrar Condutor</Link>
+
     </nav>
   );
 }
