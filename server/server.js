@@ -17,7 +17,7 @@ const upload = multer({ dest: 'uploads/' });
 
 const firestore = new Firestore({
   projectId: 'busdb-90db1',
-  keyFilename: './credentials.json'
+  keyFilename: '../credentials.json'
 });
 
 app.use(cors({
