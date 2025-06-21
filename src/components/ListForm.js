@@ -19,7 +19,6 @@ export default function ListForm() {
 
   return (
     <div className={styles.container}>
-      <h2>Lista de Rotas</h2>
       {erro && <p className={styles.error}>{erro}</p>}
 
       <div className={styles.columns}>

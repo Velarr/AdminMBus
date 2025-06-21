@@ -37,8 +37,6 @@ export default function RegisterDriver() {
   return (
     <div className={styles.container}>
       <form onSubmit={handleRegister} className={styles.form}>
-        <h2 className={styles.heading}>Registrar Motorista</h2>
-
         <label className={styles.label} htmlFor="nome">
           Nome:
           <input

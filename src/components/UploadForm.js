@@ -74,10 +74,9 @@ export default class UploadForm extends React.Component {
     return (
       <div className={styles.container}>
         <form onSubmit={this.handleSubmit} encType="multipart/form-data" className={styles.form}>
-          <h1 className={styles.heading}>Adicionar Rota</h1>
-
           <label className={styles.label}>
             Companhia:
+            <br/>
             <select
               name="companhia"
               value={formData.companhia}
@@ -93,6 +92,7 @@ export default class UploadForm extends React.Component {
 
           <label className={styles.label}>
             Rota:
+            <br/>
             <input
               type="text"
               name="rota"
@@ -106,6 +106,7 @@ export default class UploadForm extends React.Component {
 
           <label className={styles.label}>
             Número da Rota:
+            <br/>
             <input
               type="number"
               name="nrota"
@@ -119,8 +120,12 @@ export default class UploadForm extends React.Component {
           </label>
 
           <label className={styles.label}>
-            Ficheiro KML/GeoJson:
+            <br/>
+            <label htmlFor="geojson-upload" className={styles.customFileUpload}>
+              {formData.geojson ? formData.geojson.name : "Escolher ficheiro KML/GEOJSON"}
+            </label>
             <input
+              id="geojson-upload"
               type="file"
               name="geojson"
               accept=".kml,.geojson"
@@ -129,6 +134,7 @@ export default class UploadForm extends React.Component {
               className={styles.file}
             />
           </label>
+
 
           <button type="submit" className={styles.button}>Enviar</button>
 

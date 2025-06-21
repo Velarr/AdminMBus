@@ -1,0 +1,16 @@
+
+.header {
+  background-color: #1c1c1c;
+  padding: 20px 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  border-bottom: 1px solid #2a2a2a;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header h1 {
+  color: #ffffff;
+  font-size: 22px;
+  margin: 0;
+}

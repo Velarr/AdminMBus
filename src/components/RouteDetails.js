@@ -66,8 +66,6 @@ export default function RouteDetails() {
   return (
     <div className={styles.container}>
       <div className={styles.detailsBox}>
-        <h2 className={styles.heading}>Detalhes da Rota</h2>
-
         {!editMode ? (
           <>
             <p className={styles.paragraph}><strong>ID:</strong> {rota.id}</p>
@@ -166,7 +164,7 @@ export default function RouteDetails() {
           </form>
         )}
 
-        <Link to="/" className={styles.linkBack}>Voltar à lista</Link>
+        <Link to="/rotas" className={styles.linkBack}>Voltar à lista</Link>
       </div>
     </div>
   );
